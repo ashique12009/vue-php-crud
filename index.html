@@ -25,31 +25,17 @@
                     <div class="alert alert-success" v-if="successMessage">{{ successMessage }}</div>
                     
                     <div class="alert alert-danger" v-if="errorMessage">{{ errorMessage }}</div>
-                    
+                    {{ users }}
                     <table class="table table-striped">
                         <thead>
                             <tr><th>ID</th><th>Username</th><th>Email</th><th>Mobile</th><th>Action</th></tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td><button class="btn btn-sm btn-primary">Edit</button> | <button class="btn btn-sm btn-danger">Delete</button></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td><button class="btn btn-sm btn-primary">Edit</button> | <button class="btn btn-sm btn-danger">Delete</button></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
+                            <tr v-for="user in users" :key="user.id">
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.mobile }}</td>
                                 <td><button class="btn btn-sm btn-primary">Edit</button> | <button class="btn btn-sm btn-danger">Delete</button></td>
                             </tr>
                         </tbody>

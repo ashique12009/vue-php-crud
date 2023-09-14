@@ -1,6 +1,6 @@
-const { createApp } = Vue
+const { createApp } = Vue;
 
-  createApp({
+const app = createApp({
     data() {
       return {
         showModal: false,
@@ -56,6 +56,7 @@ const { createApp } = Vue
             axios.get('http://vue-php-crud.local/api.php?action=read')
             .then(function(response) {
                 console.log('RES', response);
+                app.users = response.data.users;
             });
         }
     }
