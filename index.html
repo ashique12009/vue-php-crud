@@ -25,7 +25,7 @@
                     <div class="alert alert-success" v-if="successMessage">{{ successMessage }}</div>
                     
                     <div class="alert alert-danger" v-if="errorMessage">{{ errorMessage }}</div>
-                    {{ users }}
+                    
                     <table class="table table-striped">
                         <thead>
                             <tr><th>ID</th><th>Username</th><th>Email</th><th>Mobile</th><th>Action</th></tr>
@@ -51,17 +51,17 @@
                     <form>
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username">
+                            <input type="text" class="form-control" id="username" v-model="newUser.username">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email">
+                            <input type="email" class="form-control" id="email" v-model="newUser.email">
                         </div>
                         <div class="mb-3">
                             <label for="mobile" class="form-label">Mobile</label>
-                            <input type="text" class="form-control" id="mobile" maxlength="16">
+                            <input type="text" class="form-control" id="mobile" maxlength="16" v-model="newUser.mobile">
                         </div>
-                        <button type="submit" class="btn btn-primary" @click="submitUser">Submit</button>
+                        <button type="button" class="btn btn-primary" @click="submitUser()">Submit</button>
                     </form>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                             <label for="mobile" class="form-label">Mobile</label>
                             <input type="text" class="form-control" id="mobile" maxlength="16">
                         </div>
-                        <button type="submit" class="btn btn-primary" @click="editUser">Update</button>
+                        <button type="button" class="btn btn-primary" @click="editUser()">Update</button>
                     </form>
                 </div>
             </div>

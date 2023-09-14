@@ -9,6 +9,11 @@ const app = createApp({
         errorMessage: '',
         successMessage: '',
         users: [],
+        newUser: {
+          username: '',
+          email: '',
+          mobile: ''
+        }
       }
     },
     
@@ -26,8 +31,29 @@ const app = createApp({
         },
 
         submitUser() {
+            let formData = app.toFormData(app.newUser);
+            axios.post('http://vue-php-crud.local/api.php?action=create', formData)
+            .then(function(response) {
+                app.newUser = { username: '', email: '', mobile: '' };
+                app.successMessage = response.data.message;
+                app.getUsers();
+            });
 
             this.showModal = false;
+        },
+
+        toFormData(obj) {
+            const form_data = new FormData();
+            for (let key in obj) {
+                form_data.append(key, obj[key]);
+            }
+
+            return form_data;
+        },
+
+        clearMessage() {
+            app.errorMessage = '';
+            app.successMessage = '';
         },
         
         fnShowEditModal() {
@@ -55,7 +81,6 @@ const app = createApp({
         getUsers() {
             axios.get('http://vue-php-crud.local/api.php?action=read')
             .then(function(response) {
-                console.log('RES', response);
                 app.users = response.data.users;
             });
         }
