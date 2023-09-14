@@ -91,6 +91,7 @@ if ($action == 'delete')
 
 $connection->close();
 header('content-type: application/json');
+header('Access-Control-Allow-Origin: *');
 
 echo json_encode($response);
 

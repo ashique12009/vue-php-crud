@@ -6,9 +6,16 @@ const { createApp } = Vue
         showModal: false,
         showEditModal: false,
         showDeleteModal: false,
-        message: 'Hello Vue!'
+        errorMessage: '',
+        successMessage: '',
+        users: [],
       }
     },
+    
+    mounted() {
+        this.getUsers();
+    },
+
     methods: {
         fnShowModal() {
             this.showModal = true;
@@ -43,6 +50,13 @@ const { createApp } = Vue
 
         fnCloseDeleteModal() {
             this.showDeleteModal = false;
+        },
+
+        getUsers() {
+            axios.get('http://vue-php-crud.local/api.php?action=read')
+            .then(function(response) {
+                console.log('RES', response);
+            });
         }
     }
   }).mount('#app');

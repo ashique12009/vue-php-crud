@@ -21,7 +21,11 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="alert alert-success">User added successfully</div>
+
+                    <div class="alert alert-success" v-if="successMessage">{{ successMessage }}</div>
+                    
+                    <div class="alert alert-danger" v-if="errorMessage">{{ errorMessage }}</div>
+                    
                     <table class="table table-striped">
                         <thead>
                             <tr><th>ID</th><th>Username</th><th>Email</th><th>Mobile</th><th>Action</th></tr>
@@ -116,6 +120,7 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js" integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="app.js"></script>
 </body>
