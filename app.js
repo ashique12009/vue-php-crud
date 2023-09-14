@@ -13,7 +13,8 @@ const app = createApp({
           username: '',
           email: '',
           mobile: ''
-        }
+        },
+        selectedUserToEdit: {}
       }
     },
     
@@ -42,6 +43,24 @@ const app = createApp({
             this.showModal = false;
         },
 
+        updateUser() {
+            let formData = app.toFormData(app.selectedUserToEdit);
+            axios.post('http://vue-php-crud.local/api.php?action=update', formData)
+            .then(function(response) {
+                app.selectedUserToEdit = {};
+                app.successMessage = response.data.message;
+                app.getUsers();
+            });
+
+            this.showEditModal = false;
+        },
+
+        selectUserToEdit(user) {
+            this.showEditModal = true;
+
+            this.selectedUserToEdit = user;
+        },
+
         toFormData(obj) {
             const form_data = new FormData();
             for (let key in obj) {
@@ -61,11 +80,6 @@ const app = createApp({
         },
 
         fnCloseEditModal() {
-            this.showEditModal = false;
-        },
-
-        editUser() {
-
             this.showEditModal = false;
         },
 

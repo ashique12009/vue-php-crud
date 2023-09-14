@@ -36,7 +36,10 @@
                                 <td>{{ user.username }}</td>
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.mobile }}</td>
-                                <td><button class="btn btn-sm btn-primary">Edit</button> | <button class="btn btn-sm btn-danger">Delete</button></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" @click="selectUserToEdit(user)">Edit</button> | 
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -74,17 +77,17 @@
                     <form>
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username">
+                            <input type="text" class="form-control" id="username" v-model="selectedUserToEdit.username">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email">
+                            <input type="email" class="form-control" id="email" v-model="selectedUserToEdit.email">
                         </div>
                         <div class="mb-3">
                             <label for="mobile" class="form-label">Mobile</label>
-                            <input type="text" class="form-control" id="mobile" maxlength="16">
+                            <input type="text" class="form-control" id="mobile" maxlength="16" v-model="selectedUserToEdit.mobile">
                         </div>
-                        <button type="button" class="btn btn-primary" @click="editUser()">Update</button>
+                        <button type="button" class="btn btn-primary" @click="updateUser()">Update</button>
                     </form>
                 </div>
             </div>
