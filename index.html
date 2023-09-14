@@ -54,7 +54,7 @@
             </div>
         </div>
     
-        <div class="cmodal" v-if="showModal">
+        <div class="cmodal" id="addModal" v-if="showModal">
             <div class="modalcontainer">
                 <div class="modalheading d-flex"><div>Add user</div> <div class="ms-auto cpointer closebtn" @click="fnCloseModal">X</div></div>
                 <div class="modalcontent p-5">
@@ -71,7 +71,45 @@
                             <label for="mobile" class="form-label">Mobile</label>
                             <input type="text" class="form-control" id="mobile" maxlength="16">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" @click="submitUser">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="cmodal" id="editModal" v-if="showEditModal">
+            <div class="modalcontainer">
+                <div class="modalheading d-flex"><div>Edit user</div> <div class="ms-auto cpointer closebtn" @click="fnCloseEditModal">X</div></div>
+                <div class="modalcontent p-5">
+                    <form>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mobile" class="form-label">Mobile</label>
+                            <input type="text" class="form-control" id="mobile" maxlength="16">
+                        </div>
+                        <button type="submit" class="btn btn-primary" @click="editUser">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="cmodal" id="deleteModal" v-if="showDeleteModal">
+            <div class="modalcontainer">
+                <div class="modalheading d-flex"><div>Delete user</div> <div class="ms-auto cpointer closebtn" @click="fnCloseDeleteModal">X</div></div>
+                <div class="modalcontent p-5">
+                    <form>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Are you sure want to delete?</label>
+                        </div>
+                        <button type="submit" class="btn btn-danger" @click="deleteUser">Yes</button>
+                        <button type="submit" class="btn btn-primary" @click="fnCloseDeleteModal">No</button>
                     </form>
                 </div>
             </div>
