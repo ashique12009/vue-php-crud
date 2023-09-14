@@ -38,7 +38,7 @@
                                 <td>{{ user.mobile }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-primary" @click="selectUserToEdit(user)">Edit</button> | 
-                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                    <button class="btn btn-sm btn-danger" @click="selectUserToDelete(user)">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -99,9 +99,9 @@
                 <div class="modalcontent p-5">
                     <form>
                         <div class="mb-3">
-                            <label for="username" class="form-label">Are you sure want to delete?</label>
+                            <label for="username" class="form-label">Are you sure want to delete "{{ selectedUserToEdit.username }}"?</label>
                         </div>
-                        <button type="submit" class="btn btn-danger" @click="deleteUser">Yes</button>
+                        <button type="submit" class="btn btn-danger" @click="deleteUser()">Yes</button>
                         <button type="submit" class="btn btn-primary" @click="fnCloseDeleteModal">No</button>
                     </form>
                 </div>

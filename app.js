@@ -55,8 +55,26 @@ const app = createApp({
             this.showEditModal = false;
         },
 
+        deleteUser() {
+            let formData = app.toFormData(app.selectedUserToEdit);
+            axios.post('http://vue-php-crud.local/api.php?action=delete', formData)
+            .then(function(response) {
+                app.selectedUserToEdit = {};
+                app.successMessage = response.data.message;
+                app.getUsers();
+            });
+
+            this.showDeleteModal = false;
+        },
+
         selectUserToEdit(user) {
             this.showEditModal = true;
+
+            this.selectedUserToEdit = user;
+        },
+
+        selectUserToDelete(user) {
+            this.showDeleteModal = true;
 
             this.selectedUserToEdit = user;
         },
@@ -81,11 +99,6 @@ const app = createApp({
 
         fnCloseEditModal() {
             this.showEditModal = false;
-        },
-
-        deleteUser() {
-
-            this.showDeleteModal = false;
         },
 
         fnCloseDeleteModal() {
