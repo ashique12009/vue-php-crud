@@ -1,0 +1,28 @@
+.cmodal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+.modalcontainer{
+    width: 550px;
+    background-color: #fff;
+    min-height: 450px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+.modalheading{
+    background-color: darkcyan;
+    color: #fff;
+    padding: 6px;
+}
+.cpointer{
+    cursor: pointer;
+}
+.closebtn{
+    background-color: red;
+    padding: 1px 8px;
+    border-radius: 4px;
+}
