@@ -8,6 +8,7 @@ const app = createApp({
         showDeleteModal: false,
         errorMessage: '',
         successMessage: '',
+        loader: false,
         users: [],
         newUser: {
           username: '',
@@ -32,36 +33,57 @@ const app = createApp({
         },
 
         submitUser() {
+            this.loader = true;
             let formData = app.toFormData(app.newUser);
             axios.post('http://vue-php-crud.local/api.php?action=create', formData)
             .then(function(response) {
                 app.newUser = { username: '', email: '', mobile: '' };
                 app.successMessage = response.data.message;
                 app.getUsers();
+            })
+            .catch(error => {
+                app.errorMessage = error.message;
+            })
+            .finally( () => {
+                app.loader = false;
             });
 
             this.showModal = false;
         },
 
         updateUser() {
+            this.loader = true;
             let formData = app.toFormData(app.selectedUserToEdit);
             axios.post('http://vue-php-crud.local/api.php?action=update', formData)
             .then(function(response) {
                 app.selectedUserToEdit = {};
                 app.successMessage = response.data.message;
                 app.getUsers();
+            })
+            .catch(error => {
+                app.errorMessage = error.message;
+            })
+            .finally( () => {
+                app.loader = false;
             });
 
             this.showEditModal = false;
         },
 
         deleteUser() {
+            this.loader = true;
             let formData = app.toFormData(app.selectedUserToEdit);
             axios.post('http://vue-php-crud.local/api.php?action=delete', formData)
             .then(function(response) {
                 app.selectedUserToEdit = {};
                 app.successMessage = response.data.message;
                 app.getUsers();
+            })
+            .catch(error => {
+                app.errorMessage = error.message;
+            })
+            .finally( () => {
+                app.loader = false;
             });
 
             this.showDeleteModal = false;
@@ -69,13 +91,11 @@ const app = createApp({
 
         selectUserToEdit(user) {
             this.showEditModal = true;
-
             this.selectedUserToEdit = user;
         },
 
         selectUserToDelete(user) {
             this.showDeleteModal = true;
-
             this.selectedUserToEdit = user;
         },
 
@@ -106,9 +126,16 @@ const app = createApp({
         },
 
         getUsers() {
+            this.loader = true;
             axios.get('http://vue-php-crud.local/api.php?action=read')
             .then(function(response) {
                 app.users = response.data.users;
+            })
+            .catch(error => {
+                app.errorMessage = error.message;
+            })
+            .finally( () => {
+                app.loader = false;
             });
         }
     }

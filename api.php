@@ -12,7 +12,7 @@ if ($connection->connect_error)
 
 $response = ['error' => false];
 
-$action = 'action';
+$action = 'read';
 
 if (isset($_GET['action']))
 {

@@ -25,6 +25,8 @@
                     <div class="alert alert-success" v-if="successMessage">{{ successMessage }}</div>
                     
                     <div class="alert alert-danger" v-if="errorMessage">{{ errorMessage }}</div>
+
+                    <div class="loader" v-if="loader">Please wait...</div>
                     
                     <table class="table table-striped">
                         <thead>
